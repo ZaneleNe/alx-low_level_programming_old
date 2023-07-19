@@ -19,7 +19,7 @@ void printFib(unsigned long int range)
 		printf("%lu", sum);
 
 		if (i < range)
-			printf(" ,");
+			printf(", ");
 	}
 	printf("\n");
 }
