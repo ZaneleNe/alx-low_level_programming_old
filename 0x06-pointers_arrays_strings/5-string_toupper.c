@@ -1,23 +1,21 @@
-#include "main_h"
+#include "main.h"
 
 /**
- * string_toupper - converts lower case characters to upper case
- * @str: characters to be converted
- * Return: capitalized string
+ * string_toupper - Change all lowercase letters to uppercase
+ * @c: string
+ * Return: c
  */
-char *string_toupper(char *str)
-{
-	const int upper_lower_diff = 32;
-	int temp, i = 0;
 
-	while (str[i] != '\0')
+char *string_toupper(char *c)
+{
+	int i;
+
+	for (i = 0; c[i] != '\0'; i++)
 	{
-		if ((int)(char)(str[i]) > 90)
+		if (c[i] > 96 && c[i] < 123)
 		{
-			temp = (int)(char)(str[i]) - upper_lower_diff;
-			str[i] = (char)(temp);
+			c[i] -= 32;
 		}
-		i++;
 	}
-	return (str);
+	return (c);
 }
