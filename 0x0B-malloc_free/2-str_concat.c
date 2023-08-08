@@ -1,52 +1,39 @@
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 
 /**
- * get_str_len - gets the length of the string
- * @str: string whose length is to be found.
- * Return: returns interger value of the string.
+ * str_concat - concatenate two strings using malloc
+ * @s1: string 1
+ * @s2: string 2
+ * Return: pointer to concat string
  */
-int get_str_len(char *str)
-{
-	int i;
 
-	for (i = 0; str[i] != '\0'; i++)
-		;
-
-	return (i + 1);
-}
-
-/**
- * str_concat - joins two strings
- * @s1: first string
- * @s2: second string
- * Return: contents of s1, followed by the contents of s2, and null terminated.
- * if NULL is passed, treat it as an empty string
- * The function should return NULL on failure
- */
 char *str_concat(char *s1, char *s2)
 {
-	int s1_size, s2_size, i, j;
-	char *ptr;
+	char *a;
+	int i, j, c, d;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
-	s1_size = get_str_len(s1);
-	s2_size = get_str_len(s2);
+	for (i = 0; s1[i] != '\0'; i++)
+		;
+	for (j = 0; s2[j] != '\0'; j++)
+		;
 
-	ptr = (char *) malloc(((s1_size + s2_size) - 1) * sizeof(char));
-
-	if (ptr == NULL)
+	a = malloc((i * sizeof(*s1)) + (j * sizeof(*s2)) + 1);
+	if (a == NULL)
 		return (NULL);
 
-	for (i = 0; s1[i] != '\0'; i++)
-		ptr[i] = s1[i];
-	for (j = 0; s2[j] != '\0'; j++, i++)
-		ptr[i] = s2[j];
-	ptr[i] = '\0';
+	for (c = 0, d = 0; c < (i + j + 1); c++)
+	{
+		if (c < i)
+			a[c] = s1[c];
+		else
+			a[c] = s2[d++];
+	}
 
-	return (ptr);
+	return (a);
 }
