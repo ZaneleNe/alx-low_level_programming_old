@@ -1,11 +1,26 @@
 #ifndef _HEADER_
 #define _HEADER_
-#include <stdlib.h>
+#include <stdarg.h>
 
-void print_name(char *name, void (*f)(char *));
-void array_iterator(int *array, size_t size, void (*action)(int));
-int int_index(int *array, int size, int (*cmp)(int));
-int (*get_op_func(char *s))(int, int);
 int _putchar(char c);
+int sum_them_all(const unsigned int n, ...);
+void print_numbers(const char *separator, const unsigned int n, ...);
+void print_strings(const char *separator, const unsigned int n, ...);
+void print_all(const char * const format, ...);
+void print_a_char(char *separator, va_list args);
+void print_a_integer(char *separator, va_list args);
+void print_a_float(char *separator, va_list args);
+void print_a_char_ptr(char *separator, va_list args);
+
+/**
+ * struct format_types - Struct format_types
+ * @identifier: The conversion specifier
+ * @f: The function pointer
+ */
+typedef struct format_types
+{
+	char *identifier;
+	void (*f)(char *separator, va_list args);
+} f_dt;
 
 #endif
