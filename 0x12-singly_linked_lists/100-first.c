@@ -1,12 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
- * premain - function that runs before main
- *
- * Return: nothing
+ * print_intro  - This function is a constructor attribute, so it is executed
+ *               before the main function. It prints out a couple of lines
+ *               from a poem.
  */
-void __attribute__ ((constructor)) premain()
+
+void __attribute__((constructor)) print_intro(void)
 {
-	printf("You're beat! and yet, you must allow,\n"
-	       "I bore my house uponmy back!\n");
+	printf("You're beat! and yet, you must allow,\n");
+	printf("I bore my house upon my back!\n");
 }
