@@ -1,38 +1,22 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * loop_through_binary - loops through decimal in binary representation
- * @n: number to be looped through
- * @s_index: specified index
- * @index: bit counter
- * @bit_ptr: pointer to bit
- *          pointer will be derefenced to set new bit value.
+ * get_bit - gets the value of a bit at index,
+ * starting from least bit at 0
  *
- * Return: nothing
- */
-void loop_through_binary(unsigned long int n, unsigned int s_index,
-			 unsigned int index, int *bit_ptr)
-{
-	if (n > 1)
-		loop_through_binary(n >> 1, s_index, index + 1, bit_ptr);
-
-	if (s_index == index)
-		*bit_ptr = n & 1;
-}
-
-/**
- * get_bit - gets bit at a given index.
- * @n: number containing bits
+ * @n: number to get bit from
  * @index: index of bit
  *
- * Return: value of the bit at index index or -1 if an error occured
+ * Return: value of bit, or -1 if error
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	int bit = -1;
-	int *bit_ptr = &bit;
+	unsigned long int m;
 
-	loop_through_binary(n, index, 0, bit_ptr);
+	if (index > 63)
+		return (-1);
 
-	return (bit);
+	m = 1 << index;
+	return ((n & m) > 0);
 }
